@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+
 @Entity
 public class Comment {
 	@Id
@@ -15,7 +18,8 @@ public class Comment {
 	
 	@Column(length=1000, nullable=false)
 	private String contents;
-	
+
+	@JsonIgnore
 	@ManyToOne
 	private Board board;
 	
@@ -30,11 +34,9 @@ public class Comment {
 	public Long getId() {
 		return id;
 	}
-	
 	public String getContents() {
 		return contents;
 	}
-	
 	public Board getBoard() {
 		return board;
 	}

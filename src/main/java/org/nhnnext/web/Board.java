@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 public class Board {
 	@Id
@@ -25,13 +27,14 @@ public class Board {
 	@Column(length = 100)
 	private String fileName;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
 	private List<Comment> comments;
 
 	public Long getId() {
 		return id;
 	}
-
+	
 	public String getTitle() {
 		return title;
 	}
