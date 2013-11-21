@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.nhnnext.web.Board;
 import org.nhnnext.repository.BoardRepository;
 import org.nhnnext.repository.CommentRepository;
@@ -32,8 +34,11 @@ public class BoardController {
 	private CommentRepository commentRepository;
 	
 	@RequestMapping(value={"/", "/board"})
-	public String list(Model model) {
+	public String list(Model model, HttpSession session) {
+		
+		System.out.println(session.getAttribute("userEmail"));
 		//model.addAttribute("boards", boardRepository.findAll());
+		
     	List<Board> savedBoard = (List<Board>) boardRepository.findAll();
     	// 역순으로 보여주기 위해서. 
     	Collections.reverse(savedBoard);

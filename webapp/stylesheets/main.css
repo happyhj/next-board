@@ -1,7 +1,43 @@
 @CHARSET "UTF-8";
+* {
+	1transition: all .3s;
+	-webkit-transition: all .5s; /* Safari */
+}
 body {
 	background-image: url('../images/geometry.png');
 }
+.mainContainer{
+	position: absolute;
+	top: 75px;
+	left:0px;
+	width:100%;
+	margin: 0 auto;
+}
+.mainContainer>section {
+	1float:left;
+	display: inline-block;
+	vertical-align:top;
+	margin: 5px;
+	width:250px;
+}
+.mainContainer>section.selected {
+	width:550px;
+}
+
+
+.mainContainer.blur {
+	-webkit-filter: grayscale(0.5) blur(10px);
+}
+html.beforelogin {
+	overflow: hidden;
+}
+div#lunchPhotoContainer img{
+	width: 260px;
+	margin-top:5px;
+	border: 1px solid rgba(0,0,0,.2);	
+	background-size: cover;
+}
+
 div#wrap {
 	width : 90%;
 	max-width : 600px;
@@ -15,19 +51,59 @@ a#toggleWritePostForm {
 	display:block;
 	text-align:center;
 	color: white;
-	height: 40px;
+	height: 63px;
 	background: rgba(0,0,0,0.4);
 	font-family : Raleway,Helvetica Neue,Helvetica,Arial,sans-serif;
 	letter-spacing : 0.1em;	
 	line-height: 34px;
-	width:100%;
+	width:63px;;
+	font-size: 70px;
+	margin-top:0px;
+	padding-top:7px;
+	padding-left:7px;
+	background: -webkit-linear-gradient(top, rgba(224,49,49,1) 0%,rgba(143,2,34,1) 50%,rgba(109,0,25,1) 100%); 
+}
+section.writePost input[type=text]{
+	width: 280px;
+}
+section.writePost input[type=submit] {
+	margin-top: 10px;
+	width: 280px;
+	height: 50px;	
 	font-size: 26px;
-	margin-top:3px;
-	margin-bottom:30px;
+border-radius: 0px;
+background: -webkit-linear-gradient(top, rgba(224,49,49,1) 0%,rgba(143,2,34,1) 50%,rgba(109,0,25,1) 100%); 
+/* Chrome10+,Safari5.1+ */
 }
-section#writePost{
-	display:none;
+.ratingFormContainer {
+	text-align: center;	
 }
+.ratingFormContainer>fieldset.rating {
+	display:inline-block;
+}
+section.writePost{
+	position: fixed;
+	top:76px;
+	width: 290px;
+	margin-left:-145px;
+	left: 50%;
+	opacity: 1;
+	
+	padding: 5px;
+	padding-bottom: 10px;
+	background: rgba(233,233,233,1);
+	border-radius: 3px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+	z-index: 500;
+    opacity: 1;
+   	1transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+section.writePost.hidden{
+	top:-360px;
+	opacity: 0;
+	z-index: -2;
+}
+
 
 section {
 	margin-top : 0px;
@@ -92,15 +168,20 @@ article div.imgWrap>p {
 	line-height :1.4em;
 	text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
-
-article div.imgWrap > menu{
+div.imgWrap > menu.itemSubMenu.hidden {
+	opacity: 0;
+	margin-bottom: 0px;
+}
+div.imgWrap > menu.itemSubMenu{
 	position: absolute;
 	display: block;
 	background: rgba(255,255,255,.4);
 	width: 100%;
 	height: 40px;
 	bottom:3px;
+	opacity: 1;
 }
+
 article div.imgWrap > menu > a{
 	width: 40px;
 	height: 40px;
@@ -112,11 +193,11 @@ article div.imgWrap > menu > a{
 .imgWrapShade {
 	background-size:cover;
 	background-position: center center;
-	-webkit-filter: blur(30px);		
-	width:100%;
+	-webkit-filter: blur(20px);		
+	width:110%;
 	height: 200px;
 	float:left;
-	opacity: 0.7;
+	opacity: 0.5;
 }
 div.commentWrap {
 	margin: 0 auto;
@@ -136,7 +217,7 @@ div.commentWrite form {
 	text-align : right;
 }
 
-.commentWrite input[type=submit] , input[type=reset] {
+.commentWrite input[type=submit] , input[type=reset] , input[type=submit], input[type=button] {
 	border : 0px;
 	padding : 5px;
 	background-color : gray;
@@ -180,20 +261,11 @@ text-decoration: none;
 }
 
 /* write post */
-section#writePost {
+section.writePost {
 	1border : 1px solid red;
 }
 
-#writePost > div#formArea {
-	margin-top : 3px;
-	border : 1px solid  rgb(226, 219, 219);
-	padding : 1%;
-}
 
-div#formArea {
- 	1padding-left : 100px;
- 	1padding-top : 100px;
-}
 
 div.textareaWrap {
 	position: relative;
@@ -213,10 +285,10 @@ div.textareaWrap > input[type=text], div.textareaWrap >textarea  {
 	font-size : 0.8em;
 }
 
-#formArea input[type=text] {
+input[type=text] , input[type=password]  {
 	padding-left : 8px;
 	height : 30px;
-	border : 1px solid  rgb(226, 219, 219);
+	1border : 1px solid  rgb(226, 219, 219);
 	font-size : 1em;
 }
 
@@ -227,6 +299,279 @@ div.textareaWrap > input[type=text], div.textareaWrap >textarea  {
 	background-color : gray;
 	color : white;
 	border-radius : 3px;
-	font-size : 0.8em;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 1;
+    z-index: 9999;
+    visibility: visible;
+    transition: visibility 0s 0.3s, opacity 0.3s;
+}
+.identityContainer.disabled {
+	left: -50%;
+}
+.signupContainer.disabled {
+ 	left: 150%;
+} 
+.identityContainer, .signupContainer {
+    position: fixed;
+    visibility: visible;
+    padding:0;
+    top: 50%;
+    left: 50%;
+	background: #ffffff;
+	border-radius: 3px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+	width: 380px;
+	height: 482px;
+	margin-left: -190px;
+	margin-top: -241px;
+
+	z-index: 10000;
+    opacity: 1;
+    transform: translateY(-40%) scale(0.9);
+    transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+ input[type=text],input[type=password],input[type=email] {
+-webkit-background-clip: border-box;
+-webkit-background-origin: padding-box;
+-webkit-background-size: auto;
+-webkit-box-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 5px 0px inset;
+background-attachment: scroll;
+background-clip: border-box;
+background-color: rgb(255, 255, 255);
+background-image: none;
+background-origin: padding-box;
+background-size: auto;
+border-bottom-color: rgb(214, 211, 206);
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(214, 211, 206);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgb(214, 211, 206);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgb(214, 211, 206);
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgba(0, 0, 0, 0.14902) 0px 0px 5px 0px inset;
+box-sizing: border-box;
+color: rgb(51, 51, 51);
+display: block;
+font-family: 'Helvetica Neue', arial, sans-serif;
+font-size: 20px;
+height: 56px;
+line-height: normal;
+list-style-image: none;
+list-style-position: outside;
+list-style-type: none;
+margin: 10px auto;
+outline-color: rgb(51, 51, 51);
+outline-style: none;
+outline-width: 0px;
+padding-bottom: 15px;
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 15px;
+vertical-align: middle;
+width: 300px;
+	z-index: 10000;
+
+}
+ input[type=text]:focus,input[type=password]:focus,input[type=email]:focus {
+ 	background-color: rgb(250, 255, 189);
+ }
+.identityContainer input[type=submit], .signupContainer input[type=submit] {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	height: 60px;
+	border-radius: 0px;
+	font-size: 30px;
+background: -webkit-linear-gradient(top, rgba(224,49,49,1) 0%,rgba(143,2,34,1) 50%,rgba(109,0,25,1) 100%); /* Chrome10+,Safari5.1+ */
+}
+.identityContainer input[type=submit]:hover, .signupContainer input[type=submit]:hover {
+	height: 160px;
+	font-size: 60px;
+}
+.identityContainer h1,.signupContainer  h1 {
+	margin-top:20px;
+	margin-bottom:45px;
+	text-align:center;
+	width: 100%;
+	1height: 200px;
+	font-size: 30px;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+}
+.identityContainer a,.signupContainer  a {
+	display:block;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	color: rgb(94, 87, 87);
+	1text-decoration: none;
+	font-size: 18px;
+	font-weight: 700;
+	margin: 10px auto;
+	text-align: center;
+}
+div#header{
+position: fixed;
+top: 0px;
+left: 0px;
+height: 70px;
+width: 100%;
+text-align: center;
+background: white;
+z-index: 10000;
+border-bottom: 1px solid #c8c8c8;
+box-shadow: 0px 0px 5px rgba(0,0,0,0.25);
+
+}
+#header>div.wrapper>div,#header>div.wrapper>a {
+	position: absolute;	
+	height: 70px;
+}
+#header>div.wrapper>a { 
+	left: 0px;
+}
+#header .logo {	
+	height: 70px;
+	width: 70px;
+	background: rgba(0,0,0,.1);	
+}
+#header .profile {
+	right: 0px;
+	width: 70px;
+	background: red;	
+	background-image:url('http://i2.wp.com/c0589922.cdn.cloudfiles.rackspacecloud.com/avatars/male200.png');
+	background-size:cover;
+}
+#header .post {
+	right: 70px;
+	width: 70px;
+	background: yellow;
+		
+}
+#header div.menuContainer { 
+	position: fixed;
+	top: 76px;
+	right: 5px;
+	padding: 5px;
+	padding-bottom: 15px;
+	width: 290px;
+	background: rgba(233,233,233,1);
+	border-radius: 3px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+	z-index: -1;
+    opacity: 1;
+   	1transition: visibility 0s 0.3s, opacity 0.3s, transform 0.3s;
+}
+#header .menuContainer h1 {
+	font-size: 16px;
+	font-family: 'Helvetica Neue', arial, sans-serif;	
+}
+
+#header .menuContainer.hidden {
+	opacity: 0;
+	top: -35px;	
+}
+
+
+
+#header input[type=button] {
+	margin-top: 10px;
+	width: 280px;
+	height: 50px;	
+	font-size: 26px;
+border-radius: 0px;
+background: -webkit-linear-gradient(top, rgba(224,49,49,1) 0%,rgba(143,2,34,1) 50%,rgba(109,0,25,1) 100%); 
+/* Chrome10+,Safari5.1+ */
+}
+#header input[type=button]:hover {
+	margin-top: 10px;
+	width: 280px;
+	height: 50px;	
+}
+
+
+
+
+
+
+
+.rating {
+
+    1float:left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:250%;
+    line-height:1.2;
+    color:#ddd;
+    1text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
+
+@media screen  
+and (max-width : 600px)  {
+	.mainContainer>section {
+		width: 100%;
+		margin: 5px 0;
+	}
 }
 

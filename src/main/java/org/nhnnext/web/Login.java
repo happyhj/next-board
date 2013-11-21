@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
-public class User {
+public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -21,28 +21,29 @@ public class User {
 	private String email;
 
 	@Column(length = 50, nullable = false)
-	private String username;
-
-	@Column(length = 50, nullable = false)
 	private String password;
-
+	
 	public Long getId() {
 		return id;
 	}
-	
 	public String getEmail() {
 		return email;
 	}	
-	
-	public String getUsername() {
-		return username;
-	}
 	public String getPassword() {
 		return password;
 	}	
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}	
+	public void setPassword(String password ) {
+		this.password = password;
+	}	
+
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", username=" + username + "]";
+		return "User [email=" + email + "]";
 	}
 }

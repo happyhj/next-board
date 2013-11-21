@@ -29,7 +29,7 @@
 		 	<h1>${board.title}</h1>	
 			<p> ${board.contents}</p>
 		 	<div class="numberOfComments"></div>
-			<menu>
+			<menu class="itemSubMenu hidden">
 				<a class="toggleComments" href="javascript:void(0)" >댓글 내리기</a>
 				<a class="" href="/board/${board.id}/modify">수정</a>
 				<a class="" href="/board/${board.id}/delete">삭제</a>

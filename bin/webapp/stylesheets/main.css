@@ -119,17 +119,13 @@ article div.imgWrap > menu > a{
 	opacity: 0.7;
 }
 div.commentWrap {
-	position: relative;
+	margin: 0 auto;
+	max-width:440px;
 	display:none;
-	1border : 1px solid red;
 	padding:15px;
 	margin-top:-3px;
 	transition: all 2s;	
-	height: 100px;
 	z-index:0;
-}
-div.commentWrap.show {
-	margin-top: -3px;
 }
 
 div.commentWrite {
@@ -151,7 +147,7 @@ div.commentWrite form {
 
 .commentList p {
 	margin-bottom: 10px;
-	border-bottom: 1px solid rgb(247, 247, 247)
+	border-bottom: 1px solid rgba(0, 0, 0,.1)
 }
 
 .commentList p:first-of-type {
@@ -162,6 +158,22 @@ div.commentWrite form {
 	border-bottom : 1px solid rgb(218, 218, 218);
 	padding-bottom: 10px;
 }
+
+.commentList a {
+	float:right;
+1width: 40px;
+1height: 40px;
+padding: 1px 3px;
+margin: 0;
+margin-top:-6px;
+border-radius:2px;
+background: rgba(0,0,0,0.4);
+color: white;
+text-decoration: none;
+	font-family : Raleway,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+}
+
 .commentList > .commentNum {
 	font-size : 0.8em;
 	border-bottom : 1px solid rgb(218, 218, 218);
@@ -184,14 +196,16 @@ div#formArea {
 }
 
 div.textareaWrap {
+	position: relative;
 	width  :98%;
 	margin : 20px 0px;
 	border : 1px solid  rgb(226, 219, 219);
 	text-align:center;
 }
-
-div.textareaWrap > textarea {
-	width  :96%;
+div.textareaWrap > input[type=text], div.textareaWrap >textarea  {
+	positione: absolute;
+	width  : 95%;
+	margin: 3px auto;
 	padding : 8px;
 	resize : none;
 	border : 0px;
@@ -199,9 +213,11 @@ div.textareaWrap > textarea {
 	font-size : 0.8em;
 }
 
-
 #formArea input[type=text] {
+	padding-left : 8px;
 	height : 30px;
+	border : 1px solid  rgb(226, 219, 219);
+	font-size : 1em;
 }
 
 #formArea input[type=submit] , input[type=reset]  {
